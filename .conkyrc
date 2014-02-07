@@ -1,0 +1,48 @@
+use_xft yes
+xftfont Ubuntu Mono:style=regular:size=10
+default_bar_size 170 12
+update_interval 1
+
+total_run_times 0
+double_buffer yes
+text_buffer_size 2048
+
+own_window yes
+own_window_colour 3D3D3D
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+minimum_size 220 200
+maximum_width 270
+
+
+default_color FFFFFF
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+
+color0 11E712
+color1 A7CC5C
+color2 E6E6E6
+
+alignment top_right
+gap_x 0
+gap_y 0
+
+
+
+override_utf8_locale yes
+
+no_buffers yes
+
+TEXT
+${voffset 40}${font Ubuntu:style=regular:size=15}  Youtube-DL${alignr 0}${font Ubuntu:style=bold:size=10}${exec awk -F' ' '{print $6}' .CurFilePerc}
+${voffset -7}${hr}
+${voffset 5}${offset 30}${font Ubuntu:style=regular:size=12}Video Details
+${voffset 0}${offset 40}${font}Name: ${font Ubuntu Mono:style=bold:size=10}${color0}${scroll 25 7 ${exec tail -n 1 .CurFileInfo} }
+${font}${color}${voffset 0}${offset 40}Size: ${font Ubuntu Mono:style=bold:size=10}${color0}${exec awk -F' ' '{print $4}' .CurFilePerc}
+${font}${color}${voffset 0}${offset 40}ETA : ${font Ubuntu Mono:style=bold:size=10}${color0}${exec awk -F' ' '{print $8}' .CurFilePerc}
+${font}${color}${voffset 2}${offset 40}%Age: ${font Ubuntu Mono:style=bold:size=10}${color0}${execbar awk -F' ' '{print $2}' .CurFilePerc}${offset -100}${color}${exec awk -F' ' '{print $2}' .CurFilePerc}
+${font}${color}${voffset 2}${offset 40}Stat: ${font Ubuntu:style=regular:size=10}${color0}${exec tail -n 1 .MiscInfo}

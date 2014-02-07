@@ -1,0 +1,26 @@
+#!/bin/bash
+
+conky -d -c .conkyrc &
+lineInfo=""
+truncate .CurFileInfo .CurFilePerc .MiscInfo -s 0
+
+youtube-dl --no-playlist --download-archive Archives --batch-file Links --ignore-errors -R 1 -f 18/34/43 --no-continue --newline | { while read line; do
+	echo $line
+	lineInfo=$(echo $line | sed -n '/.*[0-9]\%.*/p')
+	if [ -n "$lineInfo" ]; then
+		echo $lineInfo > .CurFilePerc
+	elif [ -n "`echo $line | sed -n '/^\[download\].[a-zA-Z]/p'`" ]; then
+		echo $line | sed -n 's/\[.*\].Destination://p' >> .CurFileInfo
+	else
+		echo $line | sed -n 's/\[.*\].*:.//p' >> .MiscInfo
+	fi
+done
+}
+
+if (! $(zenity --question --text="Downloads Complete." --ok-label "Exit" --cancel-label "View Log")); then
+gedit .MiscInfo
+fi
+
+if ($(zenity --question --text="Downloads Complete." --ok-label "Kill Conky" --cancel-label "Cancel")); then
+killall conky
+fi
