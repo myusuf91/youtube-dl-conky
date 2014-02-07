@@ -15,4 +15,6 @@ A simple bash script that displays youtube-dl progress in a conky window on the 
   To change youtube-dl options:
   Edit the youtube-dl command in the 'youtubedl_Command' file. Good Luck!
   
+  PS. Dont forget to give execute permissions to 'startDownload' and 'youtubedl_Command' files.
+  
   Screenshot: http://myusuf91.deviantart.com/art/Youtube-Dl-Conky-432418202
