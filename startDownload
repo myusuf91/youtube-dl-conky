@@ -5,7 +5,7 @@ lineInfo=""
 touch Archives
 truncate .CurFileInfo .CurFilePerc .MiscInfo -s 0
 
-youtube-dl --no-playlist --download-archive Archives --batch-file Links --ignore-errors -R 1 -f 18/34/43 --no-continue --newline | { while read line; do
+./youtubedl_Command | { while read line; do
 	echo $line
 	lineInfo=$(echo $line | sed -n '/.*[0-9]\%.*/p')
 	if [ -n "$lineInfo" ]; then
